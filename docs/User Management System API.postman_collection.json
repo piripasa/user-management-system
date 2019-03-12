@@ -1,0 +1,229 @@
+{
+	"variables": [],
+	"info": {
+		"name": "User Management System API",
+		"_postman_id": "b19d4416-c43d-88cc-13ec-d86e88bf44c9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Auth",
+			"request": {
+				"url": "http://127.0.0.1/api/auth/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "pasa@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"url": "http://127.0.0.1/api/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTI4NTAsImV4cCI6MTU1MjQ3OTI1MH0.ogtxkWolz_em6pRvjjBuvw32gieiCzEO_RjLevTmDCY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Pasa",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pasa@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Group",
+			"request": {
+				"url": "http://127.0.0.1/api/groups",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTI4NTAsImV4cCI6MTU1MjQ3OTI1MH0.ogtxkWolz_em6pRvjjBuvw32gieiCzEO_RjLevTmDCY",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"type": "text",
+							"src": "",
+							"value": "Developer"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Assign User To Group",
+			"request": {
+				"url": "http://127.0.0.1/api/users/4/groups/2",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTExOTAsImV4cCI6MTU1MjQ3NzU5MH0.hhcQlmMtFFantiYlz8EqFvewAP6Gq4RlYNh96iVp4rk",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Remove User From Group",
+			"request": {
+				"url": "http://127.0.0.1/api/users/1/groups/2",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1c2VyZ3JvdXAtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzNzI2NzQsImV4cCI6MTU1MjQ1OTA3NH0.2eF2tRd3zMA_pwrJvXnEtd18ccwwWk_weTMGwTSfHdc",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Group",
+			"request": {
+				"url": "http://127.0.0.1/api/groups/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTMxMTUsImV4cCI6MTU1MjQ3OTUxNX0.lVDAOj7cDYrrCx1B6X6GOrEQ_rBlbikH4FSiWiGUKsc",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"url": "http://127.0.0.1/api/users/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTMxMTUsImV4cCI6MTU1MjQ3OTUxNX0.lVDAOj7cDYrrCx1B6X6GOrEQ_rBlbikH4FSiWiGUKsc",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"url": "http://127.0.0.1/api/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTMxMTUsImV4cCI6MTU1MjQ3OTUxNX0.lVDAOj7cDYrrCx1B6X6GOrEQ_rBlbikH4FSiWiGUKsc",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Zaman",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "zaman@test.test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Groups",
+			"request": {
+				"url": "http://127.0.0.1/api/groups",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1bXMtand0Iiwic3ViIjoxLCJpYXQiOjE1NTIzOTMxMTUsImV4cCI6MTU1MjQ3OTUxNX0.lVDAOj7cDYrrCx1B6X6GOrEQ_rBlbikH4FSiWiGUKsc",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
