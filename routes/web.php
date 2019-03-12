@@ -14,3 +14,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    //Group routes
+    $router->get('groups', 'GroupController@index');
+    $router->post('groups', 'GroupController@store');
+    $router->delete('groups/{id}', 'GroupController@destroy');
+});
