@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         DB::table('users')->truncate();
+        DB::table('group_user')->truncate();
 
         $user = app(\App\Repositories\UserRepository::class)->create([
             'name' => "Zaman",

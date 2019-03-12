@@ -1,21 +1,39 @@
-# Lumen PHP Framework
+## User Management System
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+### Framework & tools
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+- Lumen 5.5 (PHP framework)
+- MySQL (for storage engine)
+- Composer (for installing dependencies)
+- Docker
 
-## Official Documentation
+Docs are in: /docs/
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
 
-## Security Vulnerabilities
+### Installation
+This is a dockerized application.
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+To do:
 
-## License
+- Checkout and `cd project_directory/` to go to the project root directory.
+- `sh ./start.sh`
+ 
+ API base url `http://127.0.0.1`.
 
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+ Admin Credentials:
+ `Email: zaman@test.test`
+ `Password: 123456`
+ 
+ ### CheckList
+ 
+ - [x] Create Group - admin
+ - [x] Delete Group - admin
+ - [x] List Groups
+ - [x] Create User - admin
+ - [x] Delete User - admin
+ - [x] List Users 
+ - [x] User Auth 
+ - [x] Assign user to group - admin
+ - [x] Remove user from group - admin
+ - [x] API doc
+ - [x] Install script
