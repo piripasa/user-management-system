@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\AuthException;
+use App\Exceptions\UnAuthorizedException;
 
 class GroupMiddleware
 {
@@ -16,7 +16,7 @@ class GroupMiddleware
     public function handle($request, \Closure $next, $group)
     {
         if(!$request->user->hasGroup($group)) {
-            throw new AuthException("Unauthorized");
+            throw new UnAuthorizedException("Unauthorized");
         }
 
         return $next($request);

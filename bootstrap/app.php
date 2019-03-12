@@ -68,6 +68,7 @@ $app->singleton(
 // ]);
 
 $app->routeMiddleware([
+    'auth.jwt' => App\Http\Middleware\JwtMiddleware::class,
     'group' => App\Http\Middleware\GroupMiddleware::class,
 ]);
 

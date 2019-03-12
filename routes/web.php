@@ -15,7 +15,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api'], function () use ($router) {
+$router->post('api/auth/login', 'AuthController@login');
+
+$router->group(['prefix' => 'api', 'middleware' => 'auth.jwt|group:admin'], function () use ($router) {
     //Group routes
     $router->get('groups', 'GroupController@index');
     $router->post('groups', 'GroupController@store');

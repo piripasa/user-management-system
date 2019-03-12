@@ -61,6 +61,14 @@ class Handler extends ExceptionHandler
         $statusCode = 400;
         $data = [];
         switch (get_class($exception)) {
+            case AuthException::class:
+                $statusCode = 401;
+                $data = ['message' => $exception->getMessage()];
+                break;
+            case UnAuthorizedException::class:
+                $statusCode = 403;
+                $data = ['message' => $exception->getMessage()];
+                break;
             case NotFoundHttpException::class:
                 $statusCode = 404;
                 $data = ['message' => 'Invalid uri'];
