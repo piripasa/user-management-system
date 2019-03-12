@@ -15,19 +15,28 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('api/auth/login', 'AuthController@login');
+$router->group(['prefix' => 'api'], function () use ($router) {
 
-$router->group(['prefix' => 'api', 'middleware' => 'auth.jwt|group:admin'], function () use ($router) {
-    //Group routes
-    $router->get('groups', 'GroupController@index');
-    $router->post('groups', 'GroupController@store');
-    $router->delete('groups/{id}', 'GroupController@destroy');
+    $router->post('auth/login', 'AuthController@login');
 
-    //User routes
-    $router->get('users', 'UserController@index');
-    $router->post('users', 'UserController@store');
-    $router->delete('users/{id}', 'UserController@destroy');
+    $router->group(['middleware' => 'auth.jwt'], function () use ($router) {
 
-    $router->post('users/{user_id}/groups/{group_id}', 'UserController@assignToGroup');
-    $router->delete('users/{user_id}/groups/{group_id}', 'UserController@removeFromGroup');
+        $router->group(['middleware' => 'group:admin'], function () use ($router) {
+            //Group routes
+            $router->post('groups', 'GroupController@store');
+            $router->delete('groups/{id}', 'GroupController@destroy');
+
+            //User routes
+            $router->post('users', 'UserController@store');
+            $router->delete('users/{id}', 'UserController@destroy');
+
+            $router->post('users/{user_id}/groups/{group_id}', 'UserController@assignToGroup');
+            $router->delete('users/{user_id}/groups/{group_id}', 'UserController@removeFromGroup');
+        });
+
+        //Non admin route
+        $router->get('groups', 'GroupController@index');
+        $router->get('users', 'UserController@index');
+    });
+
 });
