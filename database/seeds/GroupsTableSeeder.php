@@ -11,6 +11,22 @@ class GroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Schema::disableForeignKeyConstraints();
+
+        DB::table('groups')->truncate();
+
+        app(\App\Repositories\GroupRepository::class)->create([
+            'name' => "Admin"
+        ]);
+
+        app(\App\Repositories\GroupRepository::class)->create([
+            'name' => "Manager"
+        ]);
+
+        app(\App\Repositories\GroupRepository::class)->create([
+            'name' => "Developer"
+        ]);
+
+        Schema::enableForeignKeyConstraints();
     }
 }
