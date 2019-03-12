@@ -10,7 +10,8 @@ class UserTransformer extends BaseTransformer
         return [
             'id' => (int) $object->id,
             'name' => (string) $object->name,
-            'groups' => $object->groups->pluck('name')//app(GroupTransformer::class)->transformCollection($object->groups)['data']
+            'email' => (string) $object->email,
+            'groups' => $object->groups ? $object->groups->pluck('name') : []//app(GroupTransformer::class)->transformCollection($object->groups)['data']
         ];
     }
 }
