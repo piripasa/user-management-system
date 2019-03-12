@@ -2,12 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -43,8 +45,39 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Exception $exception)
     {
-        return parent::render($request, $e);
+        //return parent::render($request, $exception);
+        return $this->formatException($request, $exception);
+    }
+
+    /**
+     * @param $request
+     * @param Exception $exception
+     * @return mixed
+     */
+    private function formatException($request, Exception $exception)
+    {
+        $statusCode = 400;
+        $data = [];
+        switch (get_class($exception)) {
+            case NotFoundHttpException::class:
+                $statusCode = 404;
+                $data = ['message' => 'Invalid uri'];
+                break;
+            case ValidationException::class:
+                $statusCode = 422;
+                $errors = [];
+                foreach ($exception->errors() as $key => $value) {
+                    $errors[$key] = $value[0];
+                }
+                $data['data'] = $errors;
+                break;
+            default:
+                $data = ['message' => $exception->getMessage()];
+                break;
+        }
+
+        return app(Controller::class)->respondError($data, $statusCode);
     }
 }
