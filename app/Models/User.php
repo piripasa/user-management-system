@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\GroupsTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-
+    use GroupsTrait;
     /**
      * The attributes that are mass assignable.
      *

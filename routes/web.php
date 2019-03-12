@@ -25,4 +25,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('users', 'UserController@index');
     $router->post('users', 'UserController@store');
     $router->delete('users/{id}', 'UserController@destroy');
+
+    $router->post('users/{user_id}/groups/{group_id}', 'UserController@assignToGroup');
+    $router->delete('users/{user_id}/groups/{group_id}', 'UserController@removeFromGroup');
 });

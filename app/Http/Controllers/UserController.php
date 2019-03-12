@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Repositories\GroupRepository;
 use App\Repositories\UserRepository;
 use App\Transformers\UserTransformer;
 use Illuminate\Http\Request;
@@ -72,6 +73,64 @@ class UserController extends Controller
                 return $this->respondSuccess(['message' => 'User deleted successfully']);
             }
 
+        } catch (\Exception $exception) {
+            return $this->respondError(['message' => $exception->getMessage()]);
+        }
+    }
+
+    /**
+     * Assign user to group
+     * @param $user_id
+     * @param $group_id
+     * @param GroupRepository $groupRepository
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function assignToGroup($user_id, $group_id, GroupRepository $groupRepository)
+    {
+        try {
+            $user = $this->repository->find($user_id);
+            if (!$user)
+                return $this->respondError(['message' => 'User not found'], 404);
+
+            $group = $groupRepository->find($group_id);
+            if (!$group)
+                return $this->respondError(['message' => 'Group not found'], 404);
+
+            if ($user->groups->contains($group->id))
+                return $this->respondError(['message' => 'User already assigned to this group']);
+
+            $user->groups()->attach($group);
+
+            return $this->respondSuccess(['message' => 'User assigned successfully']);
+        } catch (\Exception $exception) {
+            return $this->respondError(['message' => $exception->getMessage()]);
+        }
+    }
+
+    /**
+     * Remove user from group
+     * @param $user_id
+     * @param $group_id
+     * @param GroupRepository $groupRepository
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function removeFromGroup($user_id, $group_id, GroupRepository $groupRepository)
+    {
+        try {
+            $user = $this->repository->find($user_id);
+            if (!$user)
+                return $this->respondError(['message' => 'User not found'], 404);
+
+            $group = $groupRepository->find($group_id);
+            if (!$group)
+                return $this->respondError(['message' => 'Group not found'], 404);
+
+            if (!$user->groups->contains($group->id))
+                return $this->respondError(['message' => 'User not assigned to this group']);
+
+            $user->groups()->detach($group);
+
+            return $this->respondSuccess(['message' => 'User removed from group successfully']);
         } catch (\Exception $exception) {
             return $this->respondError(['message' => $exception->getMessage()]);
         }
